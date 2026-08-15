@@ -1,0 +1,21 @@
+name: Cycloramic
+options:
+  bundleIdPrefix: com.cycloramic
+targets:
+  Cycloramic:
+    type: application
+    platform: iOS
+    deploymentTarget: "15.0"
+    sources: [Sources]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.cycloramic.app
+        TARGETED_DEVICE_FAMILY: "1"
+        SWIFT_VERSION: "5.0"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Cycloramic
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_NSCameraUsageDescription: "Kamera snímá panorama během rotace telefonu."
+        INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription: "Uložení pořízených snímků do Fotek."
+        INFOPLIST_KEY_NSMotionUsageDescription: "Gyroskop měří skutečnou rotaci telefonu."
