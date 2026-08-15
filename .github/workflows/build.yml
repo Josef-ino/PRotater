@@ -1,0 +1,37 @@
+name: Sestavit IPA
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-13
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Nainstalovat xcodegen
+        run: brew install xcodegen
+
+      - name: Vygenerovat Xcode projekt
+        run: xcodegen
+
+      - name: Sestavit bez podpisu
+        run: |
+          xcodebuild build \
+            -project Cycloramic.xcodeproj \
+            -scheme Cycloramic \
+            -configuration Release \
+            -sdk iphoneos \
+            CODE_SIGNING_ALLOWED=NO \
+            CONFIGURATION_BUILD_DIR=build
+
+      - name: Zabalit IPA
+        run: |
+          mkdir -p Payload
+          cp -r build/Cycloramic.app Payload/
+          zip -r Cycloramic.ipa Payload
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Cycloramic-ipa
+          path: Cycloramic.ipa
+          
