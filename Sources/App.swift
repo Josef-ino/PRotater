@@ -345,7 +345,7 @@ struct RotationView: View {
     }
 
     func saveAll() {
-        PHPhotoLibrary.requestAuthorization(for: .add) { status in
+        PHPhotoLibrary.requestAuthorization(for: .addOnly) { status in
             guard status == .authorized else { return }
             let imgs = self.cam.frames
             PHPhotoLibrary.shared().performChanges {
