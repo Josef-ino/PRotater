@@ -9,7 +9,9 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Nainstalovat xcodegen
-        run: brew install xcodegen
+        run: |
+          export HOMEBREW_NO_AUTO_UPDATE=1
+          brew install xcodegen
 
       - name: Vygenerovat Xcode projekt
         run: xcodegen
